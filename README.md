@@ -1,4 +1,7 @@
 # PyFlooder
-A python script designed to generate a random http get requests and send it to a server to flood the server ( **HTTP GET DOS ATTACK** )
+A [http flood](https://en.m.wikipedia.org/wiki/HTTP_Flood) python script that could stop a normal website in 10s
+
+# How does it work ?
+It generates a random get requests and uees it to send to the targetBy repeating this step for thousands of times in second the target stops
 # Usage
 **pyflooder.py < Hostname > < Port > < Number_of_Attacks >**
