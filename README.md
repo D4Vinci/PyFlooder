@@ -1,10 +1,8 @@
 # PyFlooder
-A [http flood](https://en.m.wikipedia.org/wiki/HTTP_Flood) python script that could stop a normal website in 10s
+An [HTTP Flood](https://en.m.wikipedia.org/wiki/HTTP_Flood) Python script that could stop a normal website in 10s
 
 # How does it work ?
--It generates a random get requests and uees it to send to the target.
-
--By repeating this step for thousands of times in second the target stops :D
+It generates a configurable number of random GET requests and sends them to the target
 
 # Usage
 
