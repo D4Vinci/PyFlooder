@@ -50,8 +50,9 @@ def print_status():
     thread_num_mutex.acquire(True)
 
     thread_num += 1
-    print (f"\n {time.ctime().split( )[3]} [{str(thread_num)}] #-#-# Hold Your Tears #-#-# ")
-
+    #print the output on the sameline
+    sys.stdout.write(f"\r {time.ctime().split( )[3]} [{str(thread_num)}] #-#-# Hold Your Tears #-#-#")
+    sys.stdout.flush()
     thread_num_mutex.release()
 
 
